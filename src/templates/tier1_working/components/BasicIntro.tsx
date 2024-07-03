@@ -22,6 +22,7 @@ export default function BasicIntro({
     const username = profileUrl.slice(profileUrl.lastIndexOf('/') + 1);
     return username;
   };
+  let temp: number = 1;
   return (
     <div className="flex flex-col items-center gap-0">
       <div className="">
@@ -30,6 +31,7 @@ export default function BasicIntro({
         </Role>
       </div>
 
+      {temp == 1 && <div className="h-[1px] w-full bg-black"></div>}
       <div className="flex justify-end gap-2">
         <div className="flex gap-1  items-center">
           {/* <Image src={'/icons/phone.svg'} alt="Phone" width={12} height={12} /> */}
@@ -91,6 +93,8 @@ export default function BasicIntro({
           )}
         </div>
       </div>
+      {temp == 1 && <div className="h-[1px] w-full bg-black"></div>}
+
     </div>
   );
 }

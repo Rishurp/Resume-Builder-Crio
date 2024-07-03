@@ -16,6 +16,7 @@ export default function BasicIntro({
   basics: IBasics;
   profiles: IProfiles[];
 }) {
+  let temp: number = 1; 
   return (
     <div className="flex flex-col items-center gap-0">
       <div className="">
@@ -23,6 +24,7 @@ export default function BasicIntro({
           {basics.label !== '' && basics.label !== ' ' && basics.label}
         </Role>
       </div>
+      {temp == 1 && <div className="h-[1px] w-full bg-black"></div>}
 
       <div className="flex justify-end gap-2">
         <div className="flex gap-1  items-center">
@@ -85,6 +87,8 @@ export default function BasicIntro({
           )}
         </div>
       </div>
+      {temp == 1 && <div className="h-[1px] w-full bg-black"></div>}
+
     </div>
   );
 }

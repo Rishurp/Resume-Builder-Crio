@@ -124,7 +124,7 @@ export function Section({
             style={{ width: `calc(${headerWidth}px - ${spanWidth}px)` }}
           ></span> */}
         </span>
-      {(temp === 1 || temp==2) && <hr className={`w-full`}/>}
+        <div className="h-[0.2px] w-full bg-black"></div>
       </div>
       {/* {profiles && <SocialIcons profiles={profiles} />} */}
 
