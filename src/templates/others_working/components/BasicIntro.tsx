@@ -3,7 +3,7 @@ import { IProfiles } from 'src/stores/basic.interface';
 import styled from '@emotion/styled';
 import Color from 'color';
 import Image from 'next/image';
-
+import { useSelector } from 'react-redux';
 const Role = styled.span`
   color: ${(props) => Color(props.theme.titleColor).alpha(0.85).toString()};
 `;
@@ -22,7 +22,8 @@ export default function BasicIntro({
     const username = profileUrl.slice(profileUrl.lastIndexOf('/') + 1);
     return username;
   };
-  let temp: number = 1;
+  // let temp: number = 1;
+  let temp = useSelector((state: any) => state.template.tempId);
   return (
     <div className="flex flex-col items-center gap-0">
       <div className="">

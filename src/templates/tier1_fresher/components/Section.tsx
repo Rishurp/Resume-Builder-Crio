@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { socialIcons } from 'src/helpers/icons';
 import styled from '@emotion/styled';
 import styles from './about.module.css';
+import { useSelector } from 'react-redux';
 
 const SectionHolder = styled.div`
   border-radius: 5px;
@@ -85,7 +86,8 @@ export function Section({
   const headerRef = useRef<HTMLDivElement | null>(null);
   const [spanWidth, setSpanWidth] = useState<number>(0);
   const [headerWidth, setHeaderWidth] = useState<number>(0);
-  let temp: number = 1;
+  // let temp: number = 1;
+  let temp = useSelector((state: any) => state.template.tempId);
   const calculateWidth = (): void => {
     if (spanRef.current) {
       const width = spanRef.current.offsetWidth;
@@ -107,9 +109,9 @@ export function Section({
       <div
         ref={headerRef}
         id="height-check-2"
-        className={`header flex-col flex justify-start ${temp==2 && 'items-center'} gap-1 w-full ${
-          title === 'Achievements' ? 'height-check-2' : ''
-        }`}
+        className={`header flex-col flex justify-start ${
+          temp == 2 && 'items-center'
+        } gap-1 w-full ${title === 'Achievements' ? 'height-check-2' : ''}`}
         title={title}
       >
         <span

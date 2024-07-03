@@ -6,15 +6,19 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 // eslint-disable-next-line import/no-unresolved
 import { Analytics } from '@vercel/analytics/react';
 import type { AppProps } from 'next/app';
+import { Provider } from 'react-redux';
 import { GLOBAL_MUI_THEME } from '../styles/global.theme';
 import { LocalizationProvider } from '@mui/x-date-pickers';
+import store from 'src/redux/store';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <StyledEngineProvider injectFirst>
       <ThemeProvider theme={GLOBAL_MUI_THEME}>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <Component {...pageProps} />
+          <Provider store={store}>
+            <Component {...pageProps} />
+          </Provider>
           <Analytics />
         </LocalizationProvider>
       </ThemeProvider>

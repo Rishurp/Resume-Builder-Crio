@@ -3,6 +3,9 @@ import { motion, useAnimation } from 'framer-motion';
 import { Button } from '@mui/material';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useDispatch } from 'react-redux';
+import { updateTemplate } from 'src/redux/slices/templateSlice';
+import { select } from 'jodit/types/plugins/select/select';
 
 const HomeLayout = () => {
   const [showPopup, setShowPopup] = useState(false);
@@ -10,6 +13,7 @@ const HomeLayout = () => {
   const [selectedTemplate, setSelectedTemplate] = useState('');
   const controls = useAnimation();
   const router = useRouter();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setShowPopup(true);
@@ -30,7 +34,7 @@ const HomeLayout = () => {
   const handleTemplateSelection = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedTemplate(event.target.value);
     console.log(`Selected template: ${selectedTemplate}`);
-    // Add your logic for handling the selected template here
+    dispatch(updateTemplate(event.target.value));
   };
 
   const handleNextStep = () => {
@@ -38,6 +42,8 @@ const HomeLayout = () => {
       router.push(`/builder?template=${selectedTemplate}`);
     }
   };
+
+  console.log(selectedTemplate);
 
   return (
     <div>
@@ -114,7 +120,7 @@ const HomeLayout = () => {
                       type="radio"
                       id="template-1"
                       name="template"
-                      value="template-1"
+                      value="1"
                       className="hidden peer"
                       onChange={handleTemplateSelection}
                     />
@@ -137,7 +143,7 @@ const HomeLayout = () => {
                       type="radio"
                       id="template-2"
                       name="template"
-                      value="template-2"
+                      value="2"
                       className="hidden peer"
                       onChange={handleTemplateSelection}
                     />
@@ -160,7 +166,7 @@ const HomeLayout = () => {
                       type="radio"
                       id="template-3"
                       name="template"
-                      value="template-3"
+                      value="3"
                       className="hidden peer"
                       onChange={handleTemplateSelection}
                     />
