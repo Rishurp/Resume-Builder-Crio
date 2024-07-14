@@ -21,8 +21,8 @@ const SectionHolder = styled.div`
 export default function Experience({ work }: { work: IExperienceItem[] }) {
   return (
     <SectionHolder className="experience-container">
-      {work.map((workItem) => (
-        <div key={workItem.id}>
+      {work.map((workItem,index) => (
+        <div key={index}>
           <div className="experience-header flex justify-between items-center">
             <div className="experience-title font-bold text-md">{workItem.name}</div>
             <div className="experience-date  text-xs font-bold">

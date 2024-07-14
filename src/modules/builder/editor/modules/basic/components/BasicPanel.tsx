@@ -16,6 +16,7 @@ const BasicPanel = ({
   const onChangeHandler = (value: any, key: string) => {
     const updatedTabs = { ...basicTabs };
     updatedTabs[key] = value;
+    console.log(key, value);
     onChangeText(updatedTabs);
   };
 

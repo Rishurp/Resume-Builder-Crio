@@ -1,22 +1,30 @@
 import React from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
+import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
 
-const BasicHeader = ({
-  activeTab,
-  changeActiveTab,
-  tabTitles,
-}: {
+type TabTitle = {
+  title: string;
+  hasError: boolean;
+};
+
+interface BasicHeaderProps {
   activeTab: number;
   changeActiveTab: (event: React.SyntheticEvent, activeTab: number) => void;
-  tabTitles: string[];
-}) => {
+  tabTitles: TabTitle[];
+}
+
+const BasicHeader: React.FC<BasicHeaderProps> = ({ activeTab, changeActiveTab, tabTitles }) => {
+  console.log(tabTitles);
   return (
     <Tabs value={activeTab} onChange={changeActiveTab} variant="fullWidth">
-      {tabTitles.map((title: string, index: number) => (
+      {tabTitles.map((tab, index,) => (
         <Tab
+          icon={tab.hasError ? <FiberManualRecordIcon sx={{ color: 'red' }} fontSize="small" /> : null}
+          iconPosition="end"
+          value={index}
           key={index}
-          label={title}
+          label={tab.title}
           sx={{
             color: 'rgb(46 64 82)',
             textTransform: 'none',
