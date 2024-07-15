@@ -2,8 +2,16 @@
 import create, { SetState, GetState } from 'zustand';
 import { persist } from 'zustand/middleware';
 import produce from 'immer';
-import resumeData from 'src/helpers/constants/resume-data.json';
+// import resumeData from 'src/helpers/constants/resume-data.json';
 import { IProjectItem, IProjectStore } from './projects.interface';
+import newResumeData from 'src/helpers/constants/new-resume-data.json';
+  import { mapNewToOldStructure } from 'src/helpers/mapping/mapping';
+ 
+
+
+
+  let resumeData = mapNewToOldStructure(newResumeData);
+  console.log(resumeData);
 
 const addProject =
   (set: SetState<IProjectStore>) =>

@@ -2,7 +2,15 @@ import create, { GetState, SetState } from 'zustand';
 import { persist } from 'zustand/middleware';
 import produce from 'immer';
 import { ISkillItem, ISkillState } from './skill.interface';
-import resumeData from 'src/helpers/constants/resume-data.json';
+// import resumeData from 'src/helpers/constants/resume-data.json';
+import newResumeData from 'src/helpers/constants/new-resume-data.json';
+  import { mapNewToOldStructure } from 'src/helpers/mapping/mapping';
+ 
+
+
+
+  let resumeData = mapNewToOldStructure(newResumeData);
+  console.log(resumeData);
 
 const addSkill =
   (set: SetState<ISkillState>) =>

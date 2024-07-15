@@ -1,8 +1,16 @@
 import create, { SetState } from 'zustand';
 import { persist } from 'zustand/middleware';
 import produce from 'immer';
-import resumeData from 'src/helpers/constants/resume-data.json';
+// import resumeData from 'src/helpers/constants/resume-data.json';
 import { IActivityStore, IActivity } from './activity.interface';
+import newResumeData from 'src/helpers/constants/new-resume-data.json';
+  import { mapNewToOldStructure } from 'src/helpers/mapping/mapping';
+ 
+
+
+
+  let resumeData = mapNewToOldStructure(newResumeData);
+  // console.log(resumeData);
 
 const setAllAwards = (set: SetState<IActivityStore>) => (activityItem: IActivity) => {
   set({

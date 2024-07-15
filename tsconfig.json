@@ -16,6 +16,6 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/templates/tier1_fresher_nwg/Tier1FresherNWG.js", "src/templates/tier1_fresher_nwg/Tier1FresherNWG.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/templates/tier1_fresher_nwg/Tier1FresherNWG.js", "src/templates/tier1_fresher_nwg/Tier1FresherNWG.jsx", "src/helpers/resumeApi/newResumeData.ts"],
   "exclude": ["node_modules"]
 }

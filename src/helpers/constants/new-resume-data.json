@@ -1,0 +1,49 @@
+{
+    "email": "johndoe@example.com",
+    "resumeData": {
+      "identity": {
+        "name": "John Doe",
+        "email": "johndoe@example.com",
+        "linkedin": "linkedin.com/in/johndoe",
+        "github": "github.com/johndoe",
+        "portfolio": "johndoeportfolio.com",
+        "phone": "123-456-7890"
+      },
+      "summary": "Experienced software engineer with a strong background in developing scalable web applications.",
+      "skills": {
+        "languages": ["JavaScript", "Python", "Java"],
+        "frameworkTechnologies": ["React", "Node.js", "Spring Boot"],
+        "tools": ["Git", "Docker", "Jenkins"],
+        "otherSkills": ["Agile methodology", "RESTful APIs"]
+      },
+      "experiences": [
+        {
+          "company": "Tech Solutions Inc.",
+          "location": "New York, NY",
+          "position": "Senior Software Engineer",
+          "start": "2018-05-01",
+          "end": "2023-06-01",
+          "responsibilities": "Developed and maintained web applications, led a team of 5 engineers, implemented CI/CD pipelines."
+        }
+      ],
+      "projects": [
+        {
+          "name": "E-commerce Platform",
+          "url": "https://github.com/johndoe/ecommerce",
+          "technologies": ["React", "Node.js", "MongoDB"],
+          "description": "Developed a full-stack e-commerce platform with user authentication and payment integration."
+        }
+      ],
+      "education": [
+        {
+          "institute": "State University",
+          "degree": "Bachelor of Science in Computer Science",
+          "endYear": "2018-05-01"
+        }
+      ],
+      "certifications": ["AWS Certified Solutions Architect", "Certified Scrum Master"],
+      "otherContributions": "Contributed to open-source projects on GitHub."
+    }, "collegeType" : "Tier-1",
+     "userType" : "Fresher"
+  }
+  

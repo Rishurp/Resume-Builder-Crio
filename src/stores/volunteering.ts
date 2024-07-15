@@ -1,9 +1,16 @@
 import create, { SetState, GetState } from 'zustand';
 import { persist } from 'zustand/middleware';
 import produce from 'immer';
-import resumeData from 'src/helpers/constants/resume-data.json';
+// import resumeData from 'src/helpers/constants/resume-data.json';
 import { IVolunteeringItem, IVolunteeringStore } from './volunteering.interface';
+import newResumeData from 'src/helpers/constants/new-resume-data.json';
+  import { mapNewToOldStructure } from 'src/helpers/mapping/mapping';
+ 
 
+
+
+  let resumeData = mapNewToOldStructure(newResumeData);
+  console.log(resumeData);
 const addVolunteering =
   (set: SetState<IVolunteeringStore>) =>
   ({

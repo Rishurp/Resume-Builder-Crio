@@ -16,6 +16,7 @@ export default function BasicIntro({
   basics: IBasics;
   profiles: IProfiles[];
 }) {
+  // console.log([profiles[2].url] + ' from basic intro teir 1');
   const findUsername = (profileUrl: string): string => {
     if (profileUrl.endsWith('/')) {
       profileUrl = profileUrl.slice(0, -1);
@@ -52,7 +53,7 @@ export default function BasicIntro({
         </div>
         <div className="flex gap-1 items-center">
           {/* <Image src={'/icons/location.svg'} alt="Location" width={12} height={12} /> */}
-          {profiles[2].url !== '' && (
+          {/* {profiles[2].url !== '' && (
             <>
               <a
                 className="text-sm text-decoration-line: underline text-blue-600"
@@ -64,7 +65,7 @@ export default function BasicIntro({
               </a>
               <span>|</span>
             </>
-          )}
+          )} */}
         </div>
         <div className="flex gap-1 items-center ">
           {/* <Image src={'/icons/location.svg'} alt="Location" width={12} height={12} /> */}
@@ -80,7 +81,7 @@ export default function BasicIntro({
           )}
         </div>
         <div className="flex gap-1 items-center ">
-          {profiles[3].url && (
+          {/* {profiles[3].url && (
             <>
               <span> | </span>
               <a
@@ -92,7 +93,7 @@ export default function BasicIntro({
                 Crio Portfolio
               </a>
             </>
-          )}
+          )} */}
         </div>
       </div>
       {temp == 1 && <div className="h-[1px] w-full bg-black"></div>}
