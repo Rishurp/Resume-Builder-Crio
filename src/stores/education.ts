@@ -9,8 +9,7 @@ import newResumeData from 'src/helpers/constants/new-resume-data.json';
 
 
 
-  let resumeData = mapNewToOldStructure(newResumeData);
-  console.log(resumeData);
+  
 
 const addEducation =
   (set: SetState<IEducationStore>) =>
@@ -94,7 +93,7 @@ const updateEducation =
 export const useEducations = create<IEducationStore>(
   persist(
     (set, get) => ({
-      academics: resumeData.education,
+      academics:[],
       add: addEducation(set),
       get: getEducation(get),
       remove: removeEducation(set),
@@ -102,6 +101,8 @@ export const useEducations = create<IEducationStore>(
       onmoveup: onMoveUp(set),
       onmovedown: onMoveDown(set),
       updateEducation: updateEducation(set),
+      setValues: (newValues : IEducationItem[]) => set({academics: newValues}),
+      
     }),
     { name: 'education' }
   )

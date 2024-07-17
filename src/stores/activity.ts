@@ -9,7 +9,7 @@ import newResumeData from 'src/helpers/constants/new-resume-data.json';
 
 
 
-  let resumeData = mapNewToOldStructure(newResumeData);
+  
   // console.log(resumeData);
 
 const setAllAwards = (set: SetState<IActivityStore>) => (activityItem: IActivity) => {
@@ -37,12 +37,13 @@ const updateInvolvements = (set: SetState<IActivityStore>) => (involvements: str
 export const useActivity = create<IActivityStore>(
   persist(
     (set, get) => ({
-      activities: resumeData.activities,
+      activities: {},
 
       get: () => get().activities,
       reset: setAllAwards(set),
       updateAchievements: updateAchievements(set),
       updateInvolvements: updateInvolvements(set),
+     setValues: (newValues : IActivity) => set({activities: newValues}),
     }),
     { name: 'activities' }
   )

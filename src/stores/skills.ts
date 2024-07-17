@@ -9,8 +9,8 @@ import newResumeData from 'src/helpers/constants/new-resume-data.json';
 
 
 
-  let resumeData = mapNewToOldStructure(newResumeData);
-  console.log(resumeData);
+  // let resumeData = mapNewToOldStructure(newResumeData);
+  // console.log(resumeData);
 
 const addSkill =
   (set: SetState<ISkillState>) =>
@@ -48,10 +48,11 @@ export const useLanguages = create<ISkillState>(
     (set, get) => ({
       title: 'Languages',
       hasLevel: false,
-      values: resumeData.skills.languages,
+      values: [],
       isEnabled: true,
 
       ...getMethods(set, get),
+      setValues: (newValues : ISkillItem[]) => set({values: newValues}),
     }),
     { name: 'languages' }
   )
@@ -62,10 +63,11 @@ export const useFrameworks = create<ISkillState>(
     (set, get) => ({
       title: 'Frameworks',
       hasLevel: false,
-      values: resumeData.skills.frameworks,
+      values: [],
       isEnabled: true,
 
       ...getMethods(set, get),
+      setValues: setSkills(set),
     }),
     { name: 'frameworks' }
   )
@@ -76,10 +78,11 @@ export const useTechnologies = create<ISkillState>(
     (set, get) => ({
       title: 'Technologies',
       hasLevel: false,
-      values: resumeData.skills.technologies,
+      values: [],
       isEnabled: true,
 
       ...getMethods(set, get),
+      setValues: setSkills(set),
     }),
     { name: 'technologies' }
   )
@@ -90,10 +93,12 @@ export const useLibraries = create<ISkillState>(
     (set, get) => ({
       title: 'Libraries',
       hasLevel: false,
-      values: resumeData.skills.libraries,
+      values: [],
       isEnabled: true,
 
       ...getMethods(set, get),
+      setValues: setSkills(set),
+  
     }),
     { name: 'libraries' }
   )
@@ -104,10 +109,11 @@ export const useDatabases = create<ISkillState>(
     (set, get) => ({
       title: 'Databases',
       hasLevel: false,
-      values: resumeData.skills.databases,
+      values: [],
       isEnabled: true,
 
       ...getMethods(set, get),
+      setValues: setSkills(set),
     }),
     { name: 'databases' }
   )
@@ -118,10 +124,11 @@ export const usePractices = create<ISkillState>(
     (set, get) => ({
       title: 'OS',
       hasLevel: false,
-      values: resumeData.skills.practices,
+      values: [],
       isEnabled: true,
 
       ...getMethods(set, get),
+      setValues: setSkills(set),
     }),
     { name: 'practices' }
   )
@@ -132,10 +139,11 @@ export const useTools = create<ISkillState>(
     (set, get) => ({
       title: 'Tools',
       hasLevel: false,
-      values: resumeData.skills.tools,
+      values: [],
       isEnabled: true,
 
       ...getMethods(set, get),
+      setValues: setSkills(set),
     }),
     { name: 'tools' }
   )

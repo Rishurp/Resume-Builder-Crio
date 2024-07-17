@@ -9,8 +9,7 @@ import newResumeData from 'src/helpers/constants/new-resume-data.json';
 
 
 
-  let resumeData = mapNewToOldStructure(newResumeData);
-  console.log(resumeData);
+ 
 const addVolunteering =
   (set: SetState<IVolunteeringStore>) =>
   ({
@@ -95,7 +94,7 @@ const onMoveDown = (set: SetState<IVolunteeringStore>) => (index: number) => {
 export const useVoluteeringStore = create<IVolunteeringStore>(
   persist(
     (set, get) => ({
-      volunteeredExps: resumeData.volunteer,
+      volunteeredExps: [],
       add: addVolunteering(set),
       get: getVolunteeringExp(get),
       remove: removeVolunteeringExp(set),
@@ -103,6 +102,7 @@ export const useVoluteeringStore = create<IVolunteeringStore>(
       onmoveup: onMoveUp(set),
       onmovedown: onMoveDown(set),
       updatedVolunteeringExp: updatedVolunteeringExp(set),
+      setValues: (newValues : IVolunteeringItem[]) => set({volunteeredExps: newValues}),
     }),
     { name: 'volunteering' }
   )

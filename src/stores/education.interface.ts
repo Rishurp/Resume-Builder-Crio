@@ -12,7 +12,7 @@ export interface IEducationItem {
 }
 
 export interface IEducationStore {
-  academics: IEducationItem[];
+  academics: Partial<IEducationItem>[];
   add: (newEducation: IEducationItem) => void;
   get: (index: number) => void;
   remove: (index: number) => void;
@@ -20,4 +20,5 @@ export interface IEducationStore {
   onmoveup: (index: number) => void;
   onmovedown: (index: number) => void;
   updateEducation: (index: number, updatedInfo: IEducationItem) => void;
+  setValues: (values: IEducationItem[]) => void;
 }

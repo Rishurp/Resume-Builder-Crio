@@ -9,8 +9,7 @@ import newResumeData from 'src/helpers/constants/new-resume-data.json';
 
 
 
-  let resumeData = mapNewToOldStructure(newResumeData);
-  console.log(resumeData);
+ 
 
 const addAward =
   (set: SetState<IAwardsStore>) =>
@@ -77,7 +76,7 @@ const updateAward = (set: SetState<IAwardsStore>) => (index: number, updatedInfo
 export const useAwards = create<IAwardsStore>(
   persist(
     (set, get) => ({
-      awards: resumeData.awards,
+      awards:[],
       add: addAward(set),
       get: getAllAwards(get),
       remove: removeAward(set),
@@ -85,6 +84,7 @@ export const useAwards = create<IAwardsStore>(
       onmoveup: onMoveUp(set),
       onmovedown: onMoveDown(set),
       updateAward: updateAward(set),
+      setValues: (newValues : IAwardItem[]) => set({awards: newValues}),
     }),
     { name: 'awards' }
   )

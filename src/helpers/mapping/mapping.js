@@ -1,16 +1,16 @@
 // src/helpers/mapping.js
 
 export const mapNewToOldStructure = (newData) => {
-//   console.log(newData.resumeData.identity.linkedin);
+  //   console.log(newData.resumeData.identity.linkedin);
   return {
     basics: {
-      name: newData.resumeData.identity.name,
+      name: newData.identity.name,
       label: 'Software Developer',
       image: '',
-      email: newData.resumeData.identity.email,
-      phone: newData.resumeData.identity.phone,
-      url: newData.resumeData.identity.portfolio,
-      summary: newData.resumeData.summary,
+      email: newData.identity.email,
+      phone: newData.identity.phone,
+      url: newData.identity.portfolio,
+      summary: newData.summary,
       location: {
         address: '',
         postalCode: '',
@@ -25,18 +25,18 @@ export const mapNewToOldStructure = (newData) => {
         {
           network: 'linkedin',
           username: '',
-          url: newData.resumeData.identity.linkedin,
+          url: newData.identity.linkedin,
         },
         {
           network: 'github',
           username: '',
-          url: newData.resumeData.identity.github,
+          url: newData.identity.github,
         },
       ],
     },
     skills: {
-      languages: newData.resumeData.skills.languages.map((name) => ({ name, level: 0 })),
-      frameworks: newData.resumeData.skills.frameworkTechnologies.map((name) => ({
+      languages: newData.skills.languages.map((name) => ({ name, level: 0 })),
+      frameworks: newData.skills.frameworkTechnologies.map((name) => ({
         name,
         level: 0,
       })),
@@ -44,9 +44,9 @@ export const mapNewToOldStructure = (newData) => {
       libraries: [],
       databases: [],
       practices: [],
-      tools: newData.resumeData.skills.tools.map((name) => ({ name, level: 0 })),
+      tools: newData.skills.tools.map((name) => ({ name, level: 0 })),
     },
-    work: newData.resumeData.experiences.map((experience, index) => ({
+    work: newData.experiences.map((experience, index) => ({
       id: (index + 1).toString(),
       name: experience.company,
       position: experience.position,
@@ -58,7 +58,7 @@ export const mapNewToOldStructure = (newData) => {
       summary: experience.responsibilities,
       years: '',
     })),
-    education: newData.resumeData.education.map((education, index) => ({
+    education: newData.education.map((education, index) => ({
       id: (index + 1).toString(),
       institution: education.institute,
       url: '',
@@ -72,12 +72,12 @@ export const mapNewToOldStructure = (newData) => {
     })),
     activities: {
       involvements: '',
-      achievements: newData.resumeData.certifications.join(', '),
+      achievements: newData.certifications.join(', '),
     },
     volunteer: [],
     miniProjects: [],
     awards: [],
-    projects: newData.resumeData.projects.map((project, index) => ({
+    projects: newData.projects.map((project, index) => ({
       id: (index + 1).toString(),
       name: project.name,
       languages: project.technologies.join(', '),

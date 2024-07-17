@@ -8,7 +8,7 @@ export interface IminiProjectsItem {
 }
 
 export interface IminiProjectsStore {
-  miniProjects: IminiProjectsItem[];
+  miniProjects: Partial<IminiProjectsItem>[];
   add: (newVolunteering: IminiProjectsItem) => void;
   get: (index: number) => void;
   remove: (index: number) => void;
@@ -16,4 +16,5 @@ export interface IminiProjectsStore {
   onmoveup: (index: number) => void;
   onmovedown: (index: number) => void;
   updatedMiniProject: (index: number, updatedInfo: IminiProjectsItem) => void;
+  setValues: (values: IminiProjectsItem[]) => void;
 }

@@ -9,8 +9,7 @@ import newResumeData from 'src/helpers/constants/new-resume-data.json';
 
 
 
-  let resumeData = mapNewToOldStructure(newResumeData);
-  console.log(resumeData);
+ 
 
 const addExperience =
   (set: SetState<IExperienceStore>) =>
@@ -96,7 +95,7 @@ const onMoveDown = (set: SetState<IExperienceStore>) => (index: number) => {
 export const useExperiences = create<IExperienceStore>(
   persist(
     (set, get) => ({
-      experiences: resumeData.work,
+      experiences: [],
       add: addExperience(set),
       get: getExperience(get),
       remove: removeExperience(set),
@@ -104,6 +103,8 @@ export const useExperiences = create<IExperienceStore>(
       onmoveup: onMoveUp(set),
       onmovedown: onMoveDown(set),
       updateExperience: updateExperience(set),
+      setValues: (newValues : IExperienceItem[]) => set({experiences: newValues}),
+      
     }),
     { name: 'experience' }
   )

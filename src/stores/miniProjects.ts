@@ -9,8 +9,7 @@ import newResumeData from 'src/helpers/constants/new-resume-data.json';
 
 
 
-  let resumeData = mapNewToOldStructure(newResumeData);
-  console.log(resumeData);
+ 
 
 const addMiniProject =
   (set: SetState<IminiProjectsStore>) =>
@@ -80,7 +79,7 @@ const onMoveDown = (set: SetState<IminiProjectsStore>) => (index: number) => {
 export const useMiniProjectsStore = create<IminiProjectsStore>(
   persist(
     (set, get) => ({
-      miniProjects: resumeData.miniProjects,
+      miniProjects: [],
       add: addMiniProject(set),
       get: getMiniProject(get),
       remove: removeMiniProject(set),
@@ -88,6 +87,7 @@ export const useMiniProjectsStore = create<IminiProjectsStore>(
       onmoveup: onMoveUp(set),
       onmovedown: onMoveDown(set),
       updatedMiniProject: updatedMiniProject(set),
+      setValues: (newValues : IminiProjectsItem[]) => set({miniProjects: newValues}),
     }),
     { name: 'miniProjects' }
   )

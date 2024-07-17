@@ -12,7 +12,7 @@ export interface IExperienceItem {
 }
 
 export interface IExperienceStore {
-  experiences: IExperienceItem[];
+  experiences: Partial<IExperienceItem>[];
   add: (newExperience: IExperienceItem) => void;
   get: (index: number) => void;
   remove: (index: number) => void;
@@ -20,4 +20,6 @@ export interface IExperienceStore {
   onmoveup: (index: number) => void;
   onmovedown: (index: number) => void;
   updateExperience: (index: number, updatedInfo: IExperienceItem) => void;
+  setValues: (values: IExperienceItem[]) => void;
+  
 }

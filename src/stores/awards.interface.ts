@@ -7,7 +7,7 @@ export interface IAwardItem {
 }
 
 export interface IAwardsStore {
-  awards: IAwardItem[];
+  awards:  Partial<IAwardItem>[];
   add: (newEducation: IAwardItem) => void;
   get: (index: number) => void;
   remove: (index: number) => void;
@@ -15,4 +15,5 @@ export interface IAwardsStore {
   onmoveup: (index: number) => void;
   onmovedown: (index: number) => void;
   updateAward: (index: number, updatedInfo: IAwardItem) => void;
+  setValues: (values: IAwardItem[]) => void;
 }

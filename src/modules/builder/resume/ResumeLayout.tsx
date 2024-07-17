@@ -21,6 +21,8 @@ export const ResumeLayout = () => {
   const selectedTheme = useThemes((state) => state.selectedTheme);
   StateContext = createContext(resumeData);
 
+  
+
   useEffect(() => {
     const selectedTemplateId =
       localStorage.getItem('selectedTemplateId') || AVAILABLE_TEMPLATES['tier1_fresher_nwg'].id;

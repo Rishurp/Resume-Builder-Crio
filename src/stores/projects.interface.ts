@@ -9,7 +9,7 @@ export interface IProjectItem {
 }
 
 export interface IProjectStore {
-  projects: IProjectItem[];
+  projects: Partial<IProjectItem>[];
   add: (newProject: IProjectItem) => void;
   get: (index: number) => void;
   remove: (index: number) => void;
@@ -17,4 +17,5 @@ export interface IProjectStore {
   onmoveup: (index: number) => void;
   onmovedown: (index: number) => void;
   updateProject: (index: number, updatedInfo: IProjectItem) => void;
+  setValues: (values: IProjectItem[]) => void;
 }

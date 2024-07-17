@@ -51,7 +51,7 @@ export default function ProfessionalTemplate() {
   const miniProjects = resumeData.miniProjects;
   const skills = resumeData.skills;
   const involvements = resumeData.activities.involvements;
-  console.log(involvements.innerText);
+  // console.log(involvements.innerText);
   const achievements = resumeData.activities.achievements;
   const work = resumeData.work;
 

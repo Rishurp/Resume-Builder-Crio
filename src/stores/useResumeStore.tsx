@@ -93,13 +93,33 @@ import { useExperiences } from './experience';
 import { useVoluteeringStore } from './volunteering';
 import { useProjects } from './projects';
 import { useMiniProjectsStore } from './miniProjects';
-import axios from 'axios';
-import { useState, useEffect } from 'react';
-const oldResumeData = mapNewToOldStructure(newResumeData);
 
+import { fetchResumeData } from 'src/api/newData';
+// const oldResumeData = mapNewToOldStructure(newResumeData);
+
+export const initializeResumeStore = async () => {
+  const resumeData = await fetchResumeData();
+  console.log(resumeData);
+  if (resumeData) {
+    useBasicDetails.getState().setValues(resumeData.basics);
+    useLanguages.getState().setValues(resumeData.skills.languages);
+    useFrameworks.getState().setValues(resumeData.skills.frameworks);
+    useLibraries.getState().setValues(resumeData.skills.libraries);
+    useDatabases.getState().setValues(resumeData.skills.databases);
+    useTechnologies.getState().setValues(resumeData.skills.technologies);
+    usePractices.getState().setValues(resumeData.skills.practices);
+    useTools.getState().setValues(resumeData.skills.tools);
+    useExperiences.getState().setValues(resumeData.work);
+    useProjects.getState().setValues(resumeData.projects);
+    useEducations.getState().setValues(resumeData.education);
+    useVoluteeringStore.getState().setValues(resumeData.volunteer);
+    useMiniProjectsStore.getState().setValues(resumeData.miniProjects);
+    useAwards.getState().setValues(resumeData.awards);
+    useActivity.getState().setValues(resumeData.activities);
+  }
+};
 export const useResumeStore = () => {
   return {
-    ...oldResumeData,
     basics: useBasicDetails((state) => state.values),
     work: useExperiences((state) => state.experiences),
     education: useEducations((state) => state.academics),
@@ -123,30 +143,30 @@ export const useResumeStore = () => {
 /**
  * @description Reset all the stores
  */
-export const resetResumeStore = () => {
-  useBasicDetails.getState().reset(oldResumeData.basics);
-  useLanguages.getState().reset(oldResumeData.skills.languages);
-  useFrameworks.getState().reset(oldResumeData.skills.frameworks);
-  useLibraries.getState().reset(oldResumeData.skills.libraries);
-  useDatabases.getState().reset(oldResumeData.skills.databases);
-  useTechnologies.getState().reset(oldResumeData.skills.technologies);
-  usePractices.getState().reset(oldResumeData.skills.practices);
-  useTools.getState().reset(oldResumeData.skills.tools);
-  useExperiences.getState().reset(oldResumeData.work);
-  useProjects.getState().reset(oldResumeData.projects);
-  useEducations.getState().reset(oldResumeData.education);
-  useVoluteeringStore.getState().reset(oldResumeData.volunteer);
-  useMiniProjectsStore.getState().reset(oldResumeData.miniProjects);
-  useAwards.getState().reset(oldResumeData.awards);
-  useActivity.getState().reset(oldResumeData.activities);
-};
+// export const resetResumeStore = () => {
+//   useBasicDetails.getState().reset(oldResumeData.basics);
+//   useLanguages.getState().reset(oldResumeData.skills.languages);
+//   useFrameworks.getState().reset(oldResumeData.skills.frameworks);
+//   useLibraries.getState().reset(oldResumeData.skills.libraries);
+//   useDatabases.getState().reset(oldResumeData.skills.databases);
+//   useTechnologies.getState().reset(oldResumeData.skills.technologies);
+//   usePractices.getState().reset(oldResumeData.skills.practices);
+//   useTools.getState().reset(oldResumeData.skills.tools);
+//   useExperiences.getState().reset(oldResumeData.work);
+//   useProjects.getState().reset(oldResumeData.projects);
+//   useEducations.getState().reset(oldResumeData.education);
+//   useVoluteeringStore.getState().reset(oldResumeData.volunteer);
+//   useMiniProjectsStore.getState().reset(oldResumeData.miniProjects);
+//   useAwards.getState().reset(oldResumeData.awards);
+//   useActivity.getState().reset(oldResumeData.activities);
+// };
 
-export const resetResumeSkill = () => {
-  useLanguages.getState().reset(oldResumeData.skills.languages);
-  useFrameworks.getState().reset(oldResumeData.skills.frameworks);
-  useLibraries.getState().reset(oldResumeData.skills.libraries);
-  useDatabases.getState().reset(oldResumeData.skills.databases);
-  useTechnologies.getState().reset(oldResumeData.skills.technologies);
-  usePractices.getState().reset(oldResumeData.skills.practices);
-  useTools.getState().reset(oldResumeData.skills.tools);
-};
+// export const resetResumeSkill = () => {
+//   useLanguages.getState().reset(oldResumeData.skills.languages);
+//   useFrameworks.getState().reset(oldResumeData.skills.frameworks);
+//   useLibraries.getState().reset(oldResumeData.skills.libraries);
+//   useDatabases.getState().reset(oldResumeData.skills.databases);
+//   useTechnologies.getState().reset(oldResumeData.skills.technologies);
+//   usePractices.getState().reset(oldResumeData.skills.practices);
+//   useTools.getState().reset(oldResumeData.skills.tools);
+// };

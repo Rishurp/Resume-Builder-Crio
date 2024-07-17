@@ -4,9 +4,19 @@ import NavBarLayout from './nav-bar/NavBarLayout';
 import ResumeHeader from './resume/components/ResumeHeader';
 import { ResumeLayout } from './resume/ResumeLayout';
 import Tooltip from '@mui/material/Tooltip';
-
+import { useEffect, useState } from 'react';
+import { initializeResumeStore } from 'src/stores/useResumeStore';
 
 const BuilderLayout = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      await initializeResumeStore();
+      setIsLoading(false);
+    };
+    fetchData();
+  }, []);
   return (
     <div className="flex flex-col h-screen">
       <NavBarLayout />
@@ -16,7 +26,11 @@ const BuilderLayout = () => {
             <ResumeHeader />
           </header>
           <div className="overflow-auto no-scrollbar">
-            <ResumeLayout />
+            {isLoading ? (
+              <div className="w-full h-full flex justify-center items-center">Loading...</div>
+            ) : (
+              <ResumeLayout />
+            )}
           </div>
         </div>
         <aside className="w-[25vw] min-w-[20rem] print:hidden">

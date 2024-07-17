@@ -10,9 +10,7 @@ import newResumeData from 'src/helpers/constants/new-resume-data.json';
 
 
 
-  let resumeData = mapNewToOldStructure(newResumeData);
-  console.log(resumeData);
-
+ 
 const addProject =
   (set: SetState<IProjectStore>) =>
   ({
@@ -91,7 +89,7 @@ const onMoveDown = (set: SetState<IProjectStore>) => (index: number) => {
 export const useProjects = create<IProjectStore>(
   persist(
     (set, get) => ({
-      projects: resumeData.projects,
+      projects: [],
       add: addProject(set),
       get: getProject(get),
       remove: removeProject(set),
@@ -99,6 +97,7 @@ export const useProjects = create<IProjectStore>(
       onmoveup: onMoveUp(set),
       onmovedown: onMoveDown(set),
       updateProject: updateProject(set),
+      setValues: (newValues : IProjectItem[]) => set({projects: newValues}),
     }),
     { name: 'projects' }
   )

@@ -27,7 +27,10 @@ export interface IBasicDetailsItem {
   profiles: IProfiles[];
 }
 
+
+
 export interface IBasicDetailsStore {
-  values: IBasicDetailsItem;
+  values: Partial<IBasicDetailsItem>;
   reset: (values: IBasicDetailsItem) => void;
+  setValues: (values: IBasicDetailsItem) => void;
 }
