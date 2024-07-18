@@ -1,6 +1,7 @@
+import React from 'react';
 import { Divider } from '@mui/material';
 import { motion } from 'framer-motion';
-import { headers } from 'src/helpers/constants/editor-data';
+import { useHeaders } from 'src/helpers/constants/editor-data';
 import HeaderTitle from '../atoms/HeaderTitle';
 
 const animation = {
@@ -9,11 +10,13 @@ const animation = {
 };
 
 const EditHeaders = ({ onLinkClick }: { onLinkClick: (link: string) => void }) => {
+  const headers = useHeaders();
+
   return (
     <motion.div initial={animation.initial} animate={animation.animate}>
-      {Object.entries(headers).map(([link, { title }]) => (
+      {Object.entries(headers).map(([link, { title, isError }]) => (
         <a onClick={() => onLinkClick(link)} key={title}>
-          <HeaderTitle title={title} />
+          <HeaderTitle title={title} isError={isError} />
           <Divider />
         </a>
       ))}

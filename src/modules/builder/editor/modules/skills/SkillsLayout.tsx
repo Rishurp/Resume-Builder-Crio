@@ -13,6 +13,8 @@ import Skill from './components/Skill';
 import TrackOption from './atoms/TrackOption';
 import { useEffect } from 'react';
 import useTrackStore from 'src/stores/track';
+import { moduleIsErrorInSkills } from 'src/redux/slices/templateSlice';
+import { useDispatch } from 'react-redux';
 
 const fdtSkills = {
   languages: ['JavaScript', 'HTML', 'CSS'],
@@ -73,6 +75,24 @@ const SkillsLayout = () => {
     setExpanded(isExpanded ? panel : false);
   };
 
+  const dispatch = useDispatch();
+
+  const isErrorInArray = (skillState: any[]) => {
+    for (let i = 0; i < skillState.length; i++) {
+      if (skillState[i].values.length === 0) {
+        return true;
+      }
+    }
+    return false;
+  };
+
+  useEffect(() => {
+    if (isErrorInArray(skillState)) {
+      dispatch(moduleIsErrorInSkills(true));
+    } else {
+      dispatch(moduleIsErrorInSkills(false));
+    }
+  }, [skillState, dispatch]);
   return (
     <div className="flex flex-col gap-8 mb-8">
       <TrackOption
@@ -86,6 +106,7 @@ const SkillsLayout = () => {
       {skillState.map((state) => (
         <EditSectionContainer
           key={state.title}
+          items={state.values}
           title={state.title}
           expanded={expanded === state.title}
           isEnabled={state.isEnabled}
