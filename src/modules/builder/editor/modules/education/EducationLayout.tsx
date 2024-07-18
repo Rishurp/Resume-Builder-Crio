@@ -1,25 +1,48 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useEducations } from 'src/stores/education';
 import AddEducation from './components/AddEducation';
 import Education from './components/Education';
-
+import { moduleIsErrorInEducation } from 'src/redux/slices/templateSlice';
+import { useDispatch } from 'react-redux';
 import MoveEditSection from 'src/helpers/common/components/MoveEditSectionContainer';
 
-const EducationLayout = () => {
-  const allAcademics = useEducations((state) => state.academics);
+interface Education {
+  id: string;
+  institution: string;
+  url: string;
+  studyType: string;
+  area: string;
+  courses: string[];
+  endDate: string;
+  isStudyingHere: boolean;
+  score: string;
+  startDate: string;
+}
+
+const EducationLayout: React.FC = () => {
+  const allAcademics = useEducations((state) => state.academics) as Education[];
   const removeEducation = useEducations.getState().remove;
   const onMoveUp = useEducations.getState().onmoveup;
   const onMoveDown = useEducations.getState().onmovedown;
-
+  const dispatch = useDispatch();
   const [expanded, setExpanded] = useState<string | false>(false);
 
   useEffect(() => {
-    setExpanded(allAcademics[0]?.id);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    if (allAcademics.length > 0) {
+      setExpanded(allAcademics[0].id);
+    }
   }, []);
+
+  const isErrorInEducation = (education: Education) => {
+    return !education.institution || !education.studyType || !education.startDate || !education.endDate;
+  };
 
   const handleChange = (panel: string, isExpanded: boolean) => {
     setExpanded(isExpanded ? panel : false);
+
+    if (allAcademics.length > 0) {
+      dispatch(moduleIsErrorInEducation(isErrorInEducation(allAcademics[0])));
+    }
   };
 
   return (

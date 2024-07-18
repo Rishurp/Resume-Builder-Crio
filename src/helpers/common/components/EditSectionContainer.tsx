@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion';
-
 import Image from 'next/image';
+import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
+import { ISkillItem } from 'src/stores/skill.interface';
 
 const animation = {
   exit: {
@@ -16,6 +17,7 @@ const nonEditableStyle =
 
 const EditSectionContainer = ({
   title,
+  items,
   expanded,
   clickHandler,
   isEnabled,
@@ -23,6 +25,7 @@ const EditSectionContainer = ({
   children,
 }: {
   title: string;
+  items: ISkillItem[];
   expanded: boolean;
   clickHandler: () => void;
   isEnabled: boolean;
@@ -43,13 +46,16 @@ const EditSectionContainer = ({
         onClick={clickHandler}
       >
         <span>{title}</span>
-        <Image
-          src={isEnabled ? '/icons/eye.svg' : '/icons/eye-slash.svg'}
-          alt="eye"
-          height="16"
-          width="21"
-          onClick={toggleVisibility}
-        />
+        <div className="flex items-center">
+     { items.length == 0 &&  <FiberManualRecordIcon sx={{ color: 'red' }} fontSize="small" />}
+          <Image
+            src={isEnabled ? '/icons/eye.svg' : '/icons/eye-slash.svg'}
+            alt="eye"
+            height="16"
+            width="21"
+            onClick={toggleVisibility}
+          />
+        </div>
       </div>
       <AnimatePresence>
         {expanded && (

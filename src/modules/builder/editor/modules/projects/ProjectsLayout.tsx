@@ -4,19 +4,24 @@ import AddProject from './components/AddProject';
 import ProjectComponent from './components/Project';
 import ProjectOptions from './components/ProjectOptions';
 import MoveEditSection from 'src/helpers/common/components/MoveEditSectionContainer';
+import { moduleIsErrorInProjects } from 'src/redux/slices/templateSlice';
+import { useDispatch } from 'react-redux';
 
-const ProjectsLayout = () => {
+const ProjectsLayout: React.FC = () => {
   const allProjects = useProjects((state) => state.projects);
   const removeProject = useProjects.getState().remove;
   const onMoveUp = useProjects.getState().onmoveup;
   const onMoveDown = useProjects.getState().onmovedown;
-
+  const dispatch = useDispatch();
   const [expanded, setExpanded] = useState<string | false>(false);
 
-  // useEffect(() => {
-  //   setExpanded(allProjects[0]?.id);
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
+  useEffect(() => {
+    if(allProjects.length > 0) {
+      dispatch(moduleIsErrorInProjects(false));
+    }else{
+      dispatch(moduleIsErrorInProjects(true));
+    }
+  }, [dispatch, allProjects]);
 
   const handleChange = (panel: string, isExpanded: boolean) => {
     setExpanded(isExpanded ? panel : false);

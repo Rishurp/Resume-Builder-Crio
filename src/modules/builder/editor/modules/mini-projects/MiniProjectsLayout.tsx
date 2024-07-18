@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import { useMiniProjectsStore } from 'src/stores/miniProjects';
 import AddMiniProject from './components/AddMiniProject';
 import MiniProject from './components/MiniProject';
-
+import { moduleIsErrorInMiniProjects } from 'src/redux/slices/templateSlice';
+import { useDispatch } from 'react-redux';
 import MoveEditSection from 'src/helpers/common/components/MoveEditSectionContainer';
 
 const MiniProjectLayout = () => {
@@ -10,11 +11,16 @@ const MiniProjectLayout = () => {
   const removeProject = useMiniProjectsStore.getState().remove;
   const onMoveUp = useMiniProjectsStore.getState().onmoveup;
   const onMoveDown = useMiniProjectsStore.getState().onmovedown;
-
+  const dispatch = useDispatch();
   const [expanded, setExpanded] = useState<string | false>(false);
 
   useEffect(() => {
     setExpanded(allMiniProjects[0]?.id);
+    if(allMiniProjects.length > 0) {
+      dispatch(moduleIsErrorInMiniProjects(false));
+    }else{
+      dispatch(moduleIsErrorInMiniProjects(true));
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
