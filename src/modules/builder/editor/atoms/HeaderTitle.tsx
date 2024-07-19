@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState, ReactNode } from 'react';
 import Image from 'next/image';
-import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
-import Tooltip from '@mui/material/Tooltip';
+import dynamic from 'next/dynamic';
+
+// Dynamically import the FiberManualRecordIcon and Tooltip to ensure they are only loaded on the client side
+const FiberManualRecordIcon = dynamic(() => import('@mui/icons-material/FiberManualRecord'), { ssr: false });
 
 
 interface HeaderTitleProps {
@@ -9,18 +11,36 @@ interface HeaderTitleProps {
   isError?: boolean;
 }
 
-const HeaderTitle: React.FC<HeaderTitleProps> = ({ title, isError }) => {
-  // const isError = useSelector((state: RootState) => state.template.isError);
+interface ClientOnlyProps {
+  children: ReactNode;
+}
 
+// Client-side only component wrapper
+const ClientOnly: React.FC<ClientOnlyProps> = ({ children }) => {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) {
+    return null;
+  }
+
+  return <>{children}</>;
+};
+
+const HeaderTitle: React.FC<HeaderTitleProps> = ({ title, isError }) => {
   return (
     <div className="flex items-center my-5 cursor-pointer">
       <p className="text-xl ml-2">{title}</p>
       {isError && (
-        <div>
-          <Tooltip title="Some field are missing">
-          <FiberManualRecordIcon sx={{ color: 'orange' }} fontSize="small" />
-        </Tooltip>
-        </div>
+        <ClientOnly>
+          
+          <div>
+              <FiberManualRecordIcon sx={{ color: 'orange' }} fontSize="small" />
+          </div>
+        </ClientOnly>
       )}
       <div className="ml-auto pl-4 flex items-center">
         <Image src="/icons/right-arrow.svg" alt="right-arrow" height="16" width="16" />
