@@ -261,8 +261,8 @@ const NavBarLayout = () => {
       <SnackbarProvider />
       <div className="flex-auto flex justify-between items-center ml-5">
         <NavBarMenu>
-          <NavMenuItem caption={`Choose Templates`} popoverChildren={<TemplateSelect />} />
-          <NavMenuItem caption="Colours" popoverChildren={<ThemeSelect />} />
+          {/* <NavMenuItem caption={`Choose Templates`} popoverChildren={<TemplateSelect />} /> */}
+          {/* <NavMenuItem caption="Colours" popoverChildren={<ThemeSelect />} /> */}
         </NavBarMenu>
         <NavBarActions>
           <StyledButton variant="text" onClick={handleGlobalReset}>

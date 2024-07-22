@@ -37,6 +37,7 @@ export const AVAILABLE_TEMPLATES: ITemplate = {
   //     ssr: false,
   //   }),
   // },
+
   tier1_fresher_nwg: {
     id: 'tier1_fresher_nwg',
     name: 'Tier-1 + Fresher',
@@ -45,6 +46,17 @@ export const AVAILABLE_TEMPLATES: ITemplate = {
       ssr: false,
     }),
   },
+
+  active: {
+    id: 'active',
+    name: '',
+    thumbnail: '/templates/tier1_fresher.jpg',
+    component: dynamic(() => import('src/templates/tier1_fresher/Tier1Fresher'), {
+      ssr: false,
+    }),
+
+  },
+  
   tier1_working: {
     id: 'tier1_working',
     name: 'Tier-1 + Working Professional',

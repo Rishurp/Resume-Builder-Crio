@@ -32,6 +32,11 @@ export const mapNewToOldStructure = (newData) => {
           username: '',
           url: newData.identity.github,
         },
+        {
+          network: 'Crio Portfolio',
+          username: '',
+          url: newData.identity.linkedIn ? newData.identity.linkedIn : '',
+        },
       ],
     },
     skills: {
