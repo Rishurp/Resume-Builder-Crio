@@ -46,7 +46,7 @@ export default function BasicIntro({
         </div>
         <div className="flex gap-1 items-center">
           {/* <Image src={'/icons/location.svg'} alt="Location" width={12} height={12} /> */}
-          {profiles[2].url !== '' && (
+          {profiles[1].url !== '' && (
             <>
               <a
                 className="text-sm text-decoration-line: underline text-blue-600"
@@ -74,7 +74,7 @@ export default function BasicIntro({
           )}
         </div>
         <div className="flex gap-1 items-center ">
-          {profiles[3].url && (
+          {profiles[2].url && (
             <>
               <span> | </span>
               <a

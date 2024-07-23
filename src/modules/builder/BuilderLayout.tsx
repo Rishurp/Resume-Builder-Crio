@@ -6,15 +6,51 @@ import { ResumeLayout } from './resume/ResumeLayout';
 import Tooltip from '@mui/material/Tooltip';
 import { useEffect, useState } from 'react';
 import { initializeResumeStore } from 'src/stores/useResumeStore';
+import axios from 'axios';
 
 const BuilderLayout = () => {
   const [isLoading, setIsLoading] = useState(true);
+  const [selectedTemplate, setSelectedTemplate] = useState('');
+  const userEmail = 'alice@example.com';
+
+  let fetchTemplate = async () => {
+    const getEmail = localStorage.getItem('percept_user_id');
+    const response = await axios.get(
+      `https://resume-builder-backend-59r2.onrender.com/v1/resume/get?email=${getEmail}`
+    );
+    console.log(response.data);
+    let userInfo = response.data;
+
+    if (userInfo.userType === 'Fresher' && userInfo.collegeType === 'Tier-1') {
+      setSelectedTemplate('tier1_fresher_nwg');
+    } else if (userInfo.userType === 'Fresher' && userInfo.collegeType === 'Others') {
+      setSelectedTemplate('others_fresher_nwg');
+    } else if (userInfo.userType === 'Working Professional' && userInfo.collegeType === 'Tier-1') {
+      setSelectedTemplate('tier1_working');
+    } else if (userInfo.userType === 'Working Professional' && userInfo.collegeType === 'Others') {
+      setSelectedTemplate('others_working');
+    } else if (userInfo.userType === 'Career Transition' && userInfo.collegeType === 'Tier-1') {
+      setSelectedTemplate('tier1_career_transition');
+    } else {
+      setSelectedTemplate('others_career_transition');
+    }
+  };
+
+  useEffect(() => {
+    localStorage.setItem('percept_user_id', userEmail);
+    const fetchTemp = async () => {
+      await fetchTemplate();
+    };
+
+    fetchTemp();
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
       await initializeResumeStore();
       setIsLoading(false);
     };
+
     fetchData();
   }, []);
   return (
@@ -29,7 +65,7 @@ const BuilderLayout = () => {
             {isLoading ? (
               <div className="w-full h-full flex justify-center items-center">Loading...</div>
             ) : (
-              <ResumeLayout />
+              <ResumeLayout selectedTemplate={selectedTemplate} />
             )}
           </div>
         </div>

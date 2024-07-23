@@ -5,7 +5,7 @@ export const mapNewToOldStructure = (newData) => {
   return {
     basics: {
       name: newData.identity.name,
-      label: 'Software Developer',
+      label: '',
       image: '',
       email: newData.identity.email,
       phone: newData.identity.phone,
@@ -31,6 +31,11 @@ export const mapNewToOldStructure = (newData) => {
           network: 'github',
           username: '',
           url: newData.identity.github,
+        },
+        {
+          network: 'Crio Portfolio',
+          username: '',
+          url: newData.identity.linkedIn ? newData.identity.linkedIn : '',
         },
       ],
     },

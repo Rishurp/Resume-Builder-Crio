@@ -117,6 +117,8 @@ export const initializeResumeStore = async () => {
     useAwards.getState().setValues(resumeData.awards);
     useActivity.getState().setValues(resumeData.activities);
   }
+
+  
 };
 export const useResumeStore = () => {
   return {

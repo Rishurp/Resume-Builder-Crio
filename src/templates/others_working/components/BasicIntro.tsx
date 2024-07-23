@@ -50,13 +50,13 @@ export default function BasicIntro({
         </div>
         <div className="flex gap-1 items-center">
           {/* <Image src={'/icons/location.svg'} alt="Location" width={12} height={12} /> */}
-          {profiles[2].url !== '' && (
+          {profiles[1].url !== '' && (
             <>
               <a
                 className="text-sm text-decoration-line: underline text-blue-600"
                 rel="noopener noreferrer"
                 target="_blank"
-                href={`${profiles[2].url}`}
+                href={`${profiles[1].url}`}
               >
                 Github
               </a>
@@ -78,14 +78,14 @@ export default function BasicIntro({
           )}
         </div>
         <div className="flex gap-1 items-center ">
-          {profiles[3].url && (
+          {profiles[2].url && (
             <>
               <span> | </span>
               <a
                 rel="noopener noreferrer"
                 target="_blank"
                 className="text-sm text-decoration-line: underline text-blue-600"
-                href={profiles[3].url}
+                href={profiles[2].url}
               >
                 Crio Portfolio
               </a>

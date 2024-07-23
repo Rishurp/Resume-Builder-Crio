@@ -81,7 +81,7 @@ export default function BasicIntro({
           )}
         </div>
         <div className="flex gap-1 items-center ">
-          {/* {profiles[3].url && (
+          {profiles[2].url && (
             <>
               <span> | </span>
               <a
@@ -93,7 +93,7 @@ export default function BasicIntro({
                 Crio Portfolio
               </a>
             </>
-          )} */}
+          )}
         </div>
       </div>
       {temp == 1 && <div className="h-[1px] w-full bg-black"></div>}
