@@ -262,7 +262,7 @@ const Links = ({
     } else {
       setWarnings((prev) => ({
         ...prev,
-        [network]: '',
+        [network]: 'null',
       }));
     }
   };
