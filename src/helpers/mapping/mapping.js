@@ -5,7 +5,7 @@ export const mapNewToOldStructure = (newData) => {
   return {
     basics: {
       name: newData.identity.name,
-      label: 'Software Developer',
+      label: '',
       image: '',
       email: newData.identity.email,
       phone: newData.identity.phone,

@@ -11,10 +11,12 @@ import axios from 'axios';
 const BuilderLayout = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [selectedTemplate, setSelectedTemplate] = useState('');
+  const userEmail = 'alice@example.com';
 
   let fetchTemplate = async () => {
+    const getEmail = localStorage.getItem('percept_user_id');
     const response = await axios.get(
-      'https://resume-builder-backend-59r2.onrender.com/v1/resume/get?email=johndoe@example.com'
+      `https://resume-builder-backend-59r2.onrender.com/v1/resume/get?email=${getEmail}`
     );
     console.log(response.data);
     let userInfo = response.data;
@@ -35,6 +37,7 @@ const BuilderLayout = () => {
   };
 
   useEffect(() => {
+    localStorage.setItem('percept_user_id', userEmail);
     const fetchTemp = async () => {
       await fetchTemplate();
     };
