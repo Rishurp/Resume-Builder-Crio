@@ -3,8 +3,8 @@ import Image from 'next/image';
 import dynamic from 'next/dynamic';
 
 // Dynamically import the FiberManualRecordIcon and Tooltip to ensure they are only loaded on the client side
-const FiberManualRecordIcon = dynamic(() => import('@mui/icons-material/FiberManualRecord'), { ssr: false });
-
+const InfoOutlinedIcon = dynamic(() => import('@mui/icons-material/InfoOutlined'), { ssr: false });
+const Tooltip = dynamic(() => import('@mui/material/Tooltip'), { ssr: false });
 
 interface HeaderTitleProps {
   title: string;
@@ -36,10 +36,11 @@ const HeaderTitle: React.FC<HeaderTitleProps> = ({ title, isError }) => {
       <p className="text-xl ml-2">{title}</p>
       {isError && (
         <ClientOnly>
-          
-          <div>
-              <FiberManualRecordIcon sx={{ color: 'orange' }} fontSize="small" />
-          </div>
+          <Tooltip title="Some fields are missing">
+            <div>
+              <InfoOutlinedIcon sx={{ color: 'orange' }} fontSize="small" />
+            </div>
+          </Tooltip>
         </ClientOnly>
       )}
       <div className="ml-auto pl-4 flex items-center">
